@@ -1,0 +1,13 @@
+Tensorflow installation
+
+Clean your previous installation:
+sudo pip uninstall tensorflow
+sudo pip uninstall protobuf
+
+Linux, 64bit, python2.7:
+1. export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0rc0-cp27-none-linux_x86_64.whl
+2. sudo pip install --upgrade $TF_BINARY_URL
+3. sudo pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/protobuf-3.0.0b2.post2-cp27-none-linux_x86_64.whl
+
+Possible error -> AttributeError: NewBase is_abstract, try:
+sudo pip install six --upgrade --target="/usr/lib/python2.7/dist-packages"
