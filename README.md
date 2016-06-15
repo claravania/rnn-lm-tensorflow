@@ -5,3 +5,7 @@ Code based on tensorflow tutorial on building a PTB LSTM model. https://www.tens
 ### Dataset:
 - PTB: http://www.fit.vutbr.cz/~imikolov/rnnlm/simple-examples.tgz
 - tinyshakespeare: https://github.com/karpathy/char-rnn/tree/master/data/tinyshakespeare
+
+### Usage:
+- train: python train.py
+- test: python test.py
