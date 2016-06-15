@@ -1,4 +1,4 @@
-# RNN language model using Tensorflow.
+# RNN language model using Tensorflow
 
 Code based on tensorflow tutorial on building a PTB LSTM model. https://www.tensorflow.org/versions/r0.9/tutorials/recurrent/index.html#recurrent-neural-networks
 
