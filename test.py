@@ -8,14 +8,12 @@ import time
 import os
 import cPickle
 from utils import TextLoader
-from c2w import C2WLM
-from s2w import S2WLM
 from word import WordLM
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--test_file', type=str, default='data/tutorial/test.txt',
+    parser.add_argument('--test_file', type=str, default='data/tinyshakespeare/test.txt',
                         help="test file")
     parser.add_argument('--save_dir', type=str, default='model',
                         help='directory of the checkpointed models')
@@ -24,8 +22,6 @@ def main():
 
 
 def run_epoch(session, m, data, data_loader, eval_op):
-    epoch_size = ((len(data) // m.batch_size) - 1) // m.num_steps
-    start_time = time.time()
     costs = 0.0
     iters = 0
     state = m.initial_lm_state.eval()
@@ -36,7 +32,6 @@ def run_epoch(session, m, data, data_loader, eval_op):
                                       m.initial_lm_state: state})
         costs += cost
         iters += m.num_steps
-
     return np.exp(costs / iters)
 
 
@@ -54,7 +49,7 @@ def test(test_args):
     lm_model = WordLM
 
     print "Begin testing..."
-    # If using gpu..
+    # If using gpu:
     # gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.9)
     # gpu_config = tf.ConfigProto(log_device_placement=False, gpu_options=gpu_options)
     # add parameters to the tf session -> tf.Session(config=gpu_config)
@@ -64,7 +59,7 @@ def test(test_args):
             mtest = lm_model(args, is_training=False, is_testing=True)
 
         # save only the last model
-        saver = tf.train.Saver(tf.all_variables(), max_to_keep=1)
+        saver = tf.train.Saver(tf.all_variables())
         tf.initialize_all_variables().run()
         ckpt = tf.train.get_checkpoint_state(args.save_dir)
         if ckpt and ckpt.model_checkpoint_path:

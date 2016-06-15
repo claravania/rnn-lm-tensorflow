@@ -14,9 +14,9 @@ from word import WordLM
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--train_file', type=str, default='data/train.txt',
+    parser.add_argument('--train_file', type=str, default='data/tinyshakespeare/train.txt',
                         help="training data")
-    parser.add_argument('--dev_file', type=str, default='data/dev.txt',
+    parser.add_argument('--dev_file', type=str, default='data/tinyshakespeare/dev.txt',
                         help="development data")
     parser.add_argument('--output', '-o', type=str, default='train.log',
                         help='output file')
@@ -34,7 +34,7 @@ def main():
                         help='RNN sequence length')
     parser.add_argument('--out_vocab_size', type=int, default=10000,
                         help='size of output vocabulary')
-    parser.add_argument('--num_epochs', type=int, default=5,
+    parser.add_argument('--num_epochs', type=int, default=3,
                         help='number of epochs')
     parser.add_argument('--validation_interval', type=int, default=1,
                         help='validation interval')
@@ -102,7 +102,7 @@ def train(args):
     lm_model = WordLM
 
     print "Begin training..."
-    # If using gpu..
+    # If using gpu:
     # gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.9)
     # gpu_config = tf.ConfigProto(log_device_placement=False, gpu_options=gpu_options)
     # add parameters to the tf session -> tf.Session(config=gpu_config)
