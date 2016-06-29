@@ -18,6 +18,7 @@ class WordLM(object):
         rnn_size = args.rnn_size
         rnn_cell = tf.nn.rnn_cell
         word_vocab_size = args.word_vocab_size
+        out_vocab_size = args.out_vocab_size
         # tf_device = "/gpu:" + str(args.gpu)
 
         if is_testing:
@@ -64,8 +65,8 @@ class WordLM(object):
         lm_outputs = tf.concat(1, lm_outputs)
         lm_outputs = tf.reshape(lm_outputs, [-1, rnn_size])
 
-        softmax_w = tf.get_variable("softmax_w", [rnn_size, word_vocab_size])
-        softmax_b = tf.get_variable("softmax_b", [word_vocab_size])
+        softmax_w = tf.get_variable("softmax_w", [rnn_size, out_vocab_size])
+        softmax_b = tf.get_variable("softmax_b", [out_vocab_size])
 
         logits = tf.matmul(lm_outputs, softmax_w) + softmax_b
 

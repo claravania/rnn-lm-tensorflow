@@ -49,7 +49,7 @@ class TextLoader:
         """
         self.word_to_id, self.unk_word_list = self.build_vocab(self.train_data)
         self.word_vocab_size = len(self.word_to_id)
-        with codecs.open(self.words_vocab_file, 'w', encoding='utf-8') as f:
+        with codecs.open(self.words_vocab_file, 'w') as f:
             cPickle.dump((self.word_to_id, self.unk_word_list), f)
 
     def load_preprocessed(self):
